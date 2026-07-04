@@ -33,7 +33,7 @@ function registercmds() {
     ]
 	.map(command => command.toJSON())
 
-    const rest = new REST({ version: '9' }).setToken(token)
+    const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN)
 
     rest.put(Routes.applicationCommands(clientID), { body: commands })
     	.then(() => console.log('Successfully registered application commands.'))
