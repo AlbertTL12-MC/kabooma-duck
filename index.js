@@ -182,4 +182,12 @@ client.on('interactionCreate', async interaction => {
     
 })
 
-client.login(token)
+console.log("Token check:", process.env.DISCORD_TOKEN ? "Token exists (Hidden length)" : "Token is UNDEFINED or EMPTY");
+
+// This line safely checks the type before attempting to login
+if (!process.env.DISCORD_TOKEN) {
+    console.error("CRITICAL: The system cannot find process.env.DISCORD_TOKEN");
+    process.exit(1);
+}
+
+client.login(process.env.DISCORD_TOKEN);
