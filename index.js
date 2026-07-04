@@ -11,7 +11,7 @@ if (!advancedOptions.enabled) {
     advancedOptions = require('./otherConfig/defaultAdvanced.json').advancedOptions
 }
 
-const client = new Client({ intents: [   
+  const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
         GatewayIntentBits.DirectMessages, 
         GatewayIntentBits.Guilds, 
         GatewayIntentBits.MessageContent, 
