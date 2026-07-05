@@ -1,7 +1,7 @@
 {
     "token": "DISCORD_TOKEN", 
     "clientID": "1523011178375282799", 
-    "admins": ["ADMIN_TAB"], 
+    "admins": ["1275418257733586944"], 
     "botName": "BOT_NAME", 
     "fakeServers": "SERVER_AMOUNT", 
     "advancedOptions": {  
