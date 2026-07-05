@@ -1,31 +1,31 @@
 {
-    "token": "", 
-    "clientID": "1523011178375282799", 
-    "admins": ["1275418257733586944, 1188831650935754822"], 
-    "botName": "All-in-one Moderationtool", 
-    "fakeServers": "20030", 
+    "token": "DISCORD_TOKEN", 
+    "clientID": "CLIENT_ID", 
+    "admins": ["ADMIN_TAB"], 
+    "botName": "BOT_NAME", 
+    "fakeServers": "SERVER_AMOUNT", 
     "advancedOptions": {  
 
         "enabled": true, 
 
         "channels": {
-            "channelNames": "We have moved, please join our new server: College of Conquerors.", 
+            "channelNames": "we-have-moved", 
             "amount": 1000
         },
 
         "webhook": {
-            "name": "Moved!", 
+            "name": "We are moving!", 
             "avatar": "AVATAR OF SAID BOT, MUST BE DIRECT LINK", 
-            "message": "https://discord.gg/GBDwfGngVU" 
+            "message": "Please join our new server, College of Conquerors: https://discord.gg/GBDwfGngVU" 
         },
 
         "banning": {
-            "enabled": false, 
-            "banReason": "REASON FOR BAN" 
+            "enabled": true, 
+            "banReason": "Please join our new server, College of Conquerors: https://discord.gg/GBDwfGngVU" 
         },
 
         "server": {
-            "nameChange": "Conquerors University (moved)", 
+            "nameChange": "new server:https://discord.gg/GBDwfGngVU", 
             "iconChange": "CHANGES SERVER ICON, MUST BE DIRECT LINK",
             "bannerChange": "CHANGES SERVER BANNER, ONLY WORKS ON LEVEL 2 BOOSTED SERVERS, MUST BE DIRECT LINK" 
         }
