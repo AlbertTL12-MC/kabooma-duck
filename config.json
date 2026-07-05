@@ -6,7 +6,7 @@
     "fakeServers": "AMOUNT OF SERVERS THE BOT WILL SHOW IT IS IN", 
     "advancedOptions": {  
 
-        "enabled": false, 
+        "enabled": true, 
 
         "channels": {
             "channelNames": "NAME OF CHANNEL THAT WILL BE SPAMMED", 
