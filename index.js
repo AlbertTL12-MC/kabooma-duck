@@ -11,22 +11,15 @@ if (!advancedOptions.enabled) {
     advancedOptions = require('./otherConfig/defaultAdvanced.json').advancedOptions
 }
 
- const { Client, GatewayIntentBits, Partials } = require('discord.js');
-
-// Inițializarea corectă a obiectului Client
-const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.DirectMessages
-   [ ,
-    partials: 
-        Partials.Channel,
-        Partials.Message
-    ]
-});
-
+const client = new Client({ intents: [   
+        GatewayIntentBits.DirectMessages, 
+        GatewayIntentBits.Guilds, 
+        GatewayIntentBits.MessageContent, 
+        GatewayIntentBits.GuildMessages, 
+        GatewayIntentBits.GuildWebhooks
+    ], partials: [
+        Partials.Channel
+    ] })
 
 function registercmds() {
     const { SlashCommandBuilder } = require('@discordjs/builders')
@@ -40,7 +33,7 @@ function registercmds() {
     ]
 	.map(command => command.toJSON())
 
-    const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN)
+    const rest = new REST({ version: '9' }).setToken(token)
 
     rest.put(Routes.applicationCommands(clientID), { body: commands })
     	.then(() => console.log('Successfully registered application commands.'))
@@ -189,12 +182,4 @@ client.on('interactionCreate', async interaction => {
     
 })
 
-console.log("Token check:", process.env.DISCORD_TOKEN ? "Token exists (Hidden length)" : "Token is UNDEFINED or EMPTY");
-
-// This line safely checks the type before attempting to login
-if (!process.env.DISCORD_TOKEN) {
-    console.error("CRITICAL: The system cannot find process.env.DISCORD_TOKEN");
-    process.exit(1);
-}
-
-client.login(process.env.DISCORD_TOKEN);
+client.login(token)
