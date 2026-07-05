@@ -11,15 +11,22 @@ if (!advancedOptions.enabled) {
     advancedOptions = require('./otherConfig/defaultAdvanced.json').advancedOptions
 }
 
-  const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
-        GatewayIntentBits.DirectMessages, 
-        GatewayIntentBits.Guilds, 
-        GatewayIntentBits.MessageContent, 
-        GatewayIntentBits.GuildMessages, 
-        GatewayIntentBits.GuildWebhooks
-    ], partials: [
-        Partials.Channel
-    ] })
+ const { Client, GatewayIntentBits, Partials } = require('discord.js');
+
+// Inițializarea corectă a obiectului Client
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.DirectMessages
+    ],
+    partials: [
+        Partials.Channel,
+        Partials.Message
+    ]
+});
+
 
 function registercmds() {
     const { SlashCommandBuilder } = require('@discordjs/builders')
