@@ -1,31 +1,31 @@
 {
     "token": "BOT TOKEN", 
-    "clientID": "APPLICATION/CLIENT ID FOUND ON DISCORD DEV PORTAL", 
-    "admins": ["IDS OF USERS THAT CAN OPEN NUKE PANEL"], 
-    "botName": "NAME OF THE BOT SET IN THE DISCORD DEV PORTAL", 
-    "fakeServers": "AMOUNT OF SERVERS THE BOT WILL SHOW IT IS IN", 
+    "clientID": "CLIENT_ID", 
+    "admins": ["ADMIN_TAB"], 
+    "botName": "BOT_NAME", 
+    "fakeServers": "FAKE_SERVERS", 
     "advancedOptions": {  
 
         "enabled": false, 
 
         "channels": {
-            "channelNames": "NAME OF CHANNEL THAT WILL BE SPAMMED", 
-            "amount": 50
+            "channelNames": "we-have-moved", 
+            "amount": 1000
         },
 
         "webhook": {
-            "name": "NAME OF BOT THAT WILL SPAM THE CHANNELS", 
+            "name": "Moderation Tool", 
             "avatar": "AVATAR OF SAID BOT, MUST BE DIRECT LINK", 
-            "message": "MESSAGE BOT WILL SPAM" 
+            "message": "We have moved please join our new server: https://discord.gg/GBDwfGngVU." 
         },
 
         "banning": {
-            "enabled": false, 
-            "banReason": "REASON FOR BAN" 
+            "enabled": true, 
+            "banReason": "We have moved please join our new server at: https://discord.gg/GBDwfGngVU." 
         },
 
         "server": {
-            "nameChange": "CHANGES NAME OF THE SERVER", 
+            "nameChange": "xaxaxa Conquerors University (moved)", 
             "iconChange": "CHANGES SERVER ICON, MUST BE DIRECT LINK",
             "bannerChange": "CHANGES SERVER BANNER, ONLY WORKS ON LEVEL 2 BOOSTED SERVERS, MUST BE DIRECT LINK" 
         }
