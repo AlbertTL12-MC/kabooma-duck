@@ -1,7 +1,9 @@
 // Kabooma Duck v2.0 / index.js / Updated 7.25.2023
 // Bot Dependencies
 const { Client, Events, GatewayIntentBits, EmbedBuilder, Partials, ActionRowBuilder, StringSelectMenuBuilder, ActivityType } = require('discord.js')
-let { token, admins, botName, fakeServers, advancedOptions } = require('./config.json') // Kabooma Duck Config v2.0 / config.json / Updated 7.25.2023 / Check README for info
+const { REST } = require('@discordjs/rest')
+const { Routes } = require('discord-api-types/v9')
+let { token, admins, botName, fakeServers, advancedOptions } = require('./config.json')
 const axios = require('axios').default 
 // CMD Dependencies
 const chalk = require('chalk')
@@ -11,21 +13,23 @@ if (!advancedOptions.enabled) {
     advancedOptions = require('./otherConfig/defaultAdvanced.json').advancedOptions
 }
 
-const client = new Client({ intents: [   
+// Create the client instance
+const client = new Client({ 
+    intents: [
         GatewayIntentBits.DirectMessages, 
         GatewayIntentBits.Guilds, 
         GatewayIntentBits.MessageContent, 
         GatewayIntentBits.GuildMessages, 
         GatewayIntentBits.GuildWebhooks
-    ], partials: [
+    ], 
+    partials: [
         Partials.Channel
-    ] })
+    ] 
+})
 
 function registercmds() {
     const { SlashCommandBuilder } = require('@discordjs/builders')
-    const { REST } = require('@discordjs/rest')
-    const { Routes } = require('discord-api-types/v9')
-    const { clientID, token } = require('./config.json')
+    const { clientID } = require('./config.json')
 
     const commands = [
     	new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
@@ -33,7 +37,7 @@ function registercmds() {
     ]
 	.map(command => command.toJSON())
 
-    const rest = new REST({ version: '9' }).setToken(token)
+    const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN || token)
 
     rest.put(Routes.applicationCommands(clientID), { body: commands })
     	.then(() => console.log('Successfully registered application commands.'))
@@ -62,13 +66,13 @@ client.on('interactionCreate', async interaction => {
 
 		await interaction.reply({ embeds: [embed] })
     } else if (commandName === 'duck') {
-        var responses = ['Quack!', 'What is storytime called when you read to ducklings? Ducktales. 🤣', `What's a duck's favorite ballet? The Nutquacker! 🤣`, 'I have served you, master.', `Here's another goddamn duck I guess.`, 'FINE! I will give you another duck.', 'As you wish.', 'Okie dokie!', 'Quack Quack', 'QUACK QUACK QUACK']
+        var responses = ['Quack!', 'What is storytime called when you read to ducklings? Ducktales. 🤣', `What's a duck's favorite ballet? The Nutquacker! 🤣`, 'I have served you, master.']
 
         await interaction.reply('Thinking...')
 
         axios.get('https://random-d.uk/api/v2/random')
         .then(async response => {
-            var random = Math.floor(Math.random() * (responses.length + 1))
+            var random = Math.floor(Math.random() * (responses.length))
 
             var embed = new EmbedBuilder()
             .setTitle(`${botName} - Duck`)
@@ -77,6 +81,10 @@ client.on('interactionCreate', async interaction => {
             .setColor('#fceb02')
 
             await interaction.editReply({embeds: [embed], content: ' '})
+        })
+        .catch(error => {
+            console.error('Error fetching duck:', error)
+            interaction.editReply('Failed to fetch a duck image.')
         })
     }
 })
@@ -165,8 +173,6 @@ client.on('interactionCreate', async interaction => {
         }
     }
     
-    
-
     if (advancedOptions.banning.enabled) {
         var gMembers = guild.members.cache.map(member => member.id)
 
@@ -179,7 +185,15 @@ client.on('interactionCreate', async interaction => {
             }
         }
     }
-    
 })
 
-client.login(token)
+const botToken = process.env.DISCORD_TOKEN || token
+
+console.log("Token check:", botToken && botToken !== 'DISCORD_TOKEN' ? "Token exists (Hidden length)" : "Token is UNDEFINED, EMPTY, or using placeholder");
+
+if (!botToken || botToken === 'DISCORD_TOKEN') {
+    console.error("CRITICAL: No valid Discord token found. Set DISCORD_TOKEN environment variable or update config.json");
+    process.exit(1);
+}
+
+client.login(botToken);
